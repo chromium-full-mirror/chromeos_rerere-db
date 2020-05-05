@@ -1355,7 +1355,7 @@ config INTEL_MFLD_THERMAL
 
 config INTEL_MID_POWER_BUTTON
 	tristate "power button driver for Intel MID platforms"
-	depends on INTEL_SCU_IPC && INPUT
+	depends on INTEL_SCU && INPUT
 	help
 	  This driver handles the power button on the Intel MID platforms.
 
@@ -1417,6 +1417,16 @@ config INTEL_SCU_PCI
 	  and SCU on some embedded Intel x86 platforms. It also creates
 	  devices that are connected to the SoC through the SCU. This is
 	  not needed for PC-type machines.
+
+
+config INTEL_SCU_PLATFORM
+	tristate "Intel SCU platform driver"
+	depends on ACPI
+	select INTEL_SCU
+	help
+	  SCU is used to bridge the communications between kernel and SCU
+	  (sometimes called PMC as well). This driver currently supports
+	  Intel Tiger Lake platform.
 
 config INTEL_SCU_IPC_UTIL
 	tristate "Intel SCU IPC utility driver"
